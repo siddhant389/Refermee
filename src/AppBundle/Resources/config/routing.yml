@@ -1,0 +1,3 @@
+refermee_route:
+    resource: "@AppBundle/Controller/"
+    type: annotation
