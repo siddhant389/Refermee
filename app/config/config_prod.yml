@@ -1,6 +1,7 @@
 imports:
     - { resource: config.yml }
-
+    - { resource: @AppBundle/Resources/config/parameters_prod.yml }
+   
 #framework:
 #    validation:
 #        cache: validator.mapping.cache.apc

@@ -6,11 +6,14 @@
         "psr-4": {
             "": "src/",
             "SymfonyStandard\\": "app/"
-        }
+        },
+        "files": ["app/config/ApplicationConfig.inc.php"],
+        "classmap": ["src/ThirdParty"]
     },
     "require": {
         "php": ">=5.3.3",
         "symfony/symfony": "~2.7@beta",
+        "twig/extensions": "1.0.*",
         "doctrine/orm": "~2.2,>=2.2.3,<2.5",
         "doctrine/dbal": "<2.5",
         "doctrine/doctrine-bundle": "~1.4",
@@ -19,11 +22,22 @@
         "symfony/monolog-bundle": "~2.4",
         "sensio/distribution-bundle": "~3.0,>=3.0.12",
         "sensio/framework-extra-bundle": "~3.0,>=3.0.2",
-        "incenteev/composer-parameter-handler": "~2.0"
+        "jms/security-extra-bundle": "1.5.*",
+        "jms/di-extra-bundle": "1.4.*",
+        "incenteev/composer-parameter-handler": "~2.0",
+        "noiselabs/smarty-bundle": "dev-master",
+        "zendframework/zend-mail": "2.*",
+        "zendframework/zend-validator": "2.*"
     },
     "require-dev": {
         "sensio/generator-bundle": "~2.3"
     },
+    "repositories": [
+        {
+            "type": "composer",
+            "url": "https://packages.zendframework.com/"
+        }
+    ],
     "scripts": {
         "post-root-package-install": [
             "SymfonyStandard\\Composer::hookRootPackageInstall"
@@ -50,6 +64,7 @@
     "config": {
         "bin-dir": "bin"
     },
+    "minimum-stability": "stable",
     "extra": {
         "symfony-app-dir": "app",
         "symfony-web-dir": "web",

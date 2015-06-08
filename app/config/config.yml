@@ -15,12 +15,12 @@ framework:
     router:
         resource: "%kernel.root_dir%/config/routing.yml"
         strict_requirements: ~
-    form:            ~
-    csrf_protection: ~
+    form:            true
+    csrf_protection: true
     validation:      { enable_annotations: true }
     #serializer:      { enable_annotations: true }
     templating:
-        engines: ['twig']
+        engines: ['twig', 'smarty']
         #assets_version: SomeVersionScheme
     default_locale:  "%locale%"
     trusted_hosts:   ~
@@ -78,3 +78,18 @@ swiftmailer:
     username:  "%mailer_user%"
     password:  "%mailer_password%"
     spool:     { type: memory }
+
+smarty:
+    options:
+        escape_html: false  ### set html escaping in templates
+        error_reporting: error_reporting() & ~E_NOTICE    ### to switch off notices coming from smarty
+jms_di_extra:
+    locations:
+        all_bundles: false
+        bundles: [RefermeeBundle]
+        directories: ["%kernel.root_dir%/../src/"]
+        
+    automatic_controller_injections:
+        properties:
+            authenticationUtil: "@authUtil"
+            

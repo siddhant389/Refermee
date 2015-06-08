@@ -26,14 +26,15 @@ use JMS\DiExtraBundle\Annotation as DI;
  * @config\Route("/home")
  * */
 
-class RefermeeController extends Controller{
+class RefermeeController extends Controller {
 
-    /**
-     * @config\Route("/foo") 
+    
+   /**
+     * @config\Route("/page") 
      */
-   public function foo(){
-       echo "hello php";
-   }
-
+    public function displayPage() {
+        echo "heloo nishant";die;
+        
+    }
 //put your code here
 }
