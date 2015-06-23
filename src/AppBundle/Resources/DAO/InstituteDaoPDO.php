@@ -1,5 +1,5 @@
 <?php
-
+namespace AppBundle\Resources\DAO;
 /*
  * To change this license header, choose License Headers in Project Properties.
  * To change this template file, choose Tools | Templates
@@ -11,9 +11,12 @@
  *
  * @author surbhi
  */
-class InstituteDaoPDO {
+class InstituteDaoPDO extends BaseDaoPDO {
     //put your code here
-    public function SaveIntoInstitute($objInstitute) {
+     public function getDbTag(){
+       return $this->dbTag;
+    }
+    public function saveIntoInstitute($objInstitute) {
         $query = "INSERT INTO Institute(institute_id, institute_name) values(:INSTITUTE_ID, :INSTITUTE_NAME)";
         try{
             $dbconn = $this->getConnection();

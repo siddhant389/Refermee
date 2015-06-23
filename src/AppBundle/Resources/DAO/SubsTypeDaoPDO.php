@@ -11,13 +11,13 @@
  *
  * @author surbhi
  */
-class SubsTypeDaoPDO {
+class SubsTypeDaoPDO extends BaseDaoPDO {
     //put your code here
-     public function GetDbTag(){
-       return $this->DbTag;
+     public function getDbTag(){
+       return $this->dbTag;
     }
     
-    public function SaveIntoSubsType($objSubsType) {
+    public function saveIntoSubsType($objSubsType) {
         $query = "INSERT INTO subs_type(subs_type_id, type) values(:SUBS_TYPE_ID, :TYPE)";
         try{
             $dbconn = $this->getConnection();

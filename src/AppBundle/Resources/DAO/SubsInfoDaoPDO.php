@@ -1,5 +1,5 @@
 <?php
-
+namespace AppBundle\Resources\DAO;
 /*
  * To change this license header, choose License Headers in Project Properties.
  * To change this template file, choose Tools | Templates
@@ -11,12 +11,12 @@
  *
  * @author surbhi
  */
-class SubsInfoDaoPDO {
+class SubsInfoDaoPDO extends BaseDaoPDO {
     //put your code here
-      public function GetDbTag(){
-       return $this->DbTag;
+      public function getDbTag(){
+       return $this->dbTag;
     }
-     public function SaveIntoSubsInfo($objSubsInfo) {
+     public function saveIntoSubsInfo($objSubsInfo) {
         $query = "INSERT INTO subs_info(subs_trans_id, user_id, subs_timestamp, subs_type_id) values(:SUBS_TRANS_ID, :USER_ID, :SUBS_TIMESTAMP, :SUBS_TYPE_ID)";
         try{
             $dbconn = $this->getConnection();

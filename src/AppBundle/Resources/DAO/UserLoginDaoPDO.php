@@ -1,5 +1,5 @@
 <?php
-
+namespace AppBundle\Resources\DAO;
 /*
  * To change this license header, choose License Headers in Project Properties.
  * To change this template file, choose Tools | Templates
@@ -13,10 +13,10 @@
  */
 class UserLoginDaoPDO extends BaseDaoPDO {
     //put your code here
-    public function GetDbTag(){
-       return $this->DbTag;
+    public function getDbTag(){
+       return $this->dbTag;
     }
-    public function SaveIntoUserLogin($objUserLogin) {
+    public function saveIntoUserLogin($objUserLogin) {
        try{
         $conn = $this->getConnection();
         $saveQuery = "INSERT INTO userlisher_login(user_id, username, email, password) VALUES (:USER_ID, :USERNAME, :EMAIL, :PASSWORD)";

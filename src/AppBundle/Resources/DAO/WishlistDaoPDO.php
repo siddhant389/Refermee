@@ -1,5 +1,5 @@
 <?php
-
+namespace AppBundle\Resources\DAO;
 /*
  * To change this license header, choose License Headers in Project Properties.
  * To change this template file, choose Tools | Templates
@@ -11,14 +11,14 @@
  *
  * @author surbhi
  */
-class WishlistDaoPDO {
+class WishlistDaoPDO extends BaseDaoPDO {
     //put your code here
     
-     public function GetDbTag(){
-       return $this->DbTag;
+     public function getDbTag(){
+       return $this->dbTag;
     }
     
-    public function SaveIntoWishlist($objWishlist) {
+    public function saveIntoWishlist($objWishlist) {
         $query = "INSERT INTO wishlist(user_id, wishfor) values(:USER_ID, :WISHFOR)";
         try{
             $dbconn = $this->getConnection();

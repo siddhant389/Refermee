@@ -1,5 +1,5 @@
 <?php
-
+namespace AppBundle\Resources\DAO;
 /*
  * To change this license header, choose License Headers in Project Properties.
  * To change this template file, choose Tools | Templates
@@ -11,9 +11,12 @@
  *
  * @author surbhi
  */
-class PpuInfoDaoPDO {
+class PpuInfoDaoPDO extends BaseDaoPDO {
     //put your code here
-    public function SaveIntoPpuInfo($objPpuInfo) {
+     public function getDbTag(){
+       return $this->dbTag;
+    }
+    public function saveIntoPpuInfo($objPpuInfo) {
         $query = "INSERT INTO ppu_info(ppu_trans_id, user_id, ppu_timestamp, ppu_type_id, book_id) values(:PPU_TRANS_ID, :USER_ID, :PPU_TIMESTAMP, :PPU_TYPE_ID, :BOOK_ID)";
         try{
             $dbconn = $this->getConnection();

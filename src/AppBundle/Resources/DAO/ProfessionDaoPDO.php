@@ -1,5 +1,5 @@
 <?php
-
+namespace AppBundle\Resources\DAO;
 /*
  * To change this license header, choose License Headers in Project Properties.
  * To change this template file, choose Tools | Templates
@@ -11,13 +11,13 @@
  *
  * @author surbhi
  */
-class ProfessionDaoPDO {
+class ProfessionDaoPDO extends BaseDaoPDO {
     //put your code here
-     public function GetDbTag(){
-       return $this->DbTag;
+     public function getDbTag(){
+       return $this->dbTag;
     }
     
-    public function SaveIntoProfession($objProfession) {
+    public function saveIntoProfession($objProfession) {
         $query = "INSERT INTO profession(user_id, specification, profession, organisation) values(:USER_ID, :SPECIFICATION, :PROFESSION, :ORGANISATION)";
         try{
             $dbconn = $this->getConnection();

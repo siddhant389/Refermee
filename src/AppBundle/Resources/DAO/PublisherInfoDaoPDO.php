@@ -1,5 +1,5 @@
 <?php
-
+namespace AppBundle\Resources\DAO;
 /*
  * To change this license header, choose License Headers in Project Properties.
  * To change this template file, choose Tools | Templates
@@ -11,14 +11,14 @@
  *
  * @author surbhi
  */
-class PublisherInfoDaoPDO {
+class PublisherInfoDaoPDO extends BaseDaoPDO {
     //put your code here
     
-     public function GetDbTag(){
-       return $this->DbTag;
+     public function getDbTag(){
+       return $this->dbTag;
     }
     
-    public function SaveIntoPublisherInfo($objPublisherInfo) {
+    public function saveIntoPublisherInfo($objPublisherInfo) {
         $query = "INSERT INTO publisher_info(pub_id, organisation_name, address, city, pincode) values(:PUB_ID, :ORGANISATION_NAME, :ADDRESS, :CITY, :PINCODE)";
         try{
             $dbconn = $this->getConnection();

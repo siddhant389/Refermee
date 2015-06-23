@@ -104,7 +104,7 @@ class UserDetails {
         $this->email = $email;
     }
     
-    static function setLoginCredentials(objUserDO){
+    public static function setLoginCredentials($arr){
        $this->username = getUserName($arr);
        $this->password = getPassword($arr);
        $this->email = getEmail($arr);

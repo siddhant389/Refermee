@@ -1,5 +1,5 @@
 <?php
-
+namespace AppBundle\Resources\DAO;
 /*
  * To change this license header, choose License Headers in Project Properties.
  * To change this template file, choose Tools | Templates
@@ -11,13 +11,13 @@
  *
  * @author surbhi
  */
-class SpecificationsDaoPDO {
+class SpecificationsDaoPDO extends BaseDaoPDO {
     //put your code here
-      public function GetDbTag(){
-       return $this->DbTag;
+      public function getDbTag(){
+       return $this->dbTag;
     }
     
-    public function SaveIntoSpecifications($objSpecifications) {
+    public function saveIntoSpecifications($objSpecifications) {
         $query = "INSERT INTO specifications(specification_id, specification_name) values(:SPECIFICATION_ID, :SPECIFICATION_NAME)";
         try{
             $dbconn = $this->getConnection();

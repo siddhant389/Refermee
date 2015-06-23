@@ -1,5 +1,5 @@
 <?php
-
+namespace AppBundle\Resources\DAO;
 /*
  * To change this license header, choose License Headers in Project Properties.
  * To change this template file, choose Tools | Templates
@@ -11,9 +11,13 @@
  *
  * @author surbhi
  */
-class EducationDaoPDO {
+class EducationDaoPDO extends BaseDaoPDO{
     //put your code here
-    public function SaveIntoEducation($objEducation) {
+    public function getDbTag(){
+       return $this->dbTag;
+    }
+    
+    public function saveIntoEducation($objEducation) {
         $query = "INSERT INTO Education(user_id, specification_id, course_id, institute_id, year_of_completion) values(:USER_ID, :SPECIFICATION_ID, :COURSE_ID, :INSTITUTE_ID, YEAR_OF_COMPLETION)";
         try{
             $dbconn = $this->getConnection();

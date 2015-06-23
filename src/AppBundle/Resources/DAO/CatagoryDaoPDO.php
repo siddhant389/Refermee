@@ -1,5 +1,5 @@
 <?php
-
+namespace AppBundle\Resources\DAO;
 /*
  * To change this license header, choose License Headers in Project Properties.
  * To change this template file, choose Tools | Templates
@@ -11,11 +11,11 @@
  *
  * @author surbhi
  */
-class CatagoryDaoPDO {
+class CatagoryDaoPDO extends BaseDaoPDO {
     //put your code here
     
-     public function GetDbTag(){
-       return $this->DbTag;
+     public function getDbTag(){
+       return $this->dbTag;
     }
     
     public function saveIntoCatagory($objCatagory) {

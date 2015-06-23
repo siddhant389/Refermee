@@ -1,5 +1,5 @@
 <?php
-
+namespace AppBundle\Resources\DAO;
 /*
  * To change this license header, choose License Headers in Project Properties.
  * To change this template file, choose Tools | Templates
@@ -11,14 +11,14 @@
  *
  * @author surbhi
  */
-class BookSubsInfo {
+class BookSubsInfo extends BaseDaoPDO {
     //put your code here
     
-     public function GetDbTag(){
-       return $this->DbTag;
+     public function getDbTag(){
+       return $this->dbTag;
     }
     
-    public function SaveIntoBookSubsInfo($objBookSubsInfo) {
+    public function saveIntoBookSubsInfo($objBookSubsInfo) {
         $query = "INSERT INTO book_subs_info(book_id, subs_trans_id) values(:BOOK_ID, :SUBS_TRANS_ID)";
         try{
             $dbconn = $this->getConnection();
@@ -29,4 +29,5 @@ class BookSubsInfo {
         } catch (Exception $ex) {
                 $this->throwPDOException($e);
         }
+    }
 }

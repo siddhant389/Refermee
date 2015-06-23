@@ -11,13 +11,13 @@
  *
  * @author surbhi
  */
-class UserInfoDaoPDO {
+class UserInfoDaoPDO extends BaseDaoPDO{
     //put your code here
-      public function GetDbTag(){
-       return $this->DbTag;
+      public function getDbTag(){
+       return $this->dbTag;
     }
     
-    public function InsertIntoUserInfo($objUserInfo){
+    public function insertIntoUserInfo($objUserInfo){
           $query = "INSERT INTO user_info(user_info_id, user_id, name, location, sex, age) values(:USER_INFO_ID, :USER_ID, :NAME, :LOCATION, :SEX, :AGE)";
         try{
             $dbconn = $this->getConnection();

@@ -1,5 +1,5 @@
 <?php
-
+namespace AppBundle\Resources\DAO;
 /*
  * To change this license header, choose License Headers in Project Properties.
  * To change this template file, choose Tools | Templates
@@ -11,13 +11,13 @@
  *
  * @author surbhi
  */
-class BookAuthorDaoPDO {
+class BookAuthorDaoPDO extends BaseDaoPDO{
     //put your code here
-     public function GetDbTag(){
-       return $this->DbTag;
+     public function getDbTag(){
+       return $this->dbTag;
     }
     
-    public function SaveIntoBookAuthor($objBookAuthor) {
+    public function saveIntoBookAuthor($objBookAuthor) {
         $query = "INSERT INTO book_author(book_id, author_id) values(:BOOK_ID, :AUTHOR_ID)";
         try{
             $dbconn = $this->getConnection();

@@ -1,5 +1,5 @@
 <?php
-
+namespace AppBundle\Resources\DAO;
 /*
  * To change this license header, choose License Headers in Project Properties.
  * To change this template file, choose Tools | Templates
@@ -13,11 +13,11 @@
  */
 class BooksDaoPDO extends BaseDaoPDO {
     //put your code here
-     public function GetDbTag(){
-       return $this->DbTag;
+     public function getDbTag(){
+       return $this->dbTag;
     }
     
-    public function InsertIntoBooks($objBooks){
+    public function insertIntoBooks($objBooks){
           $query = "INSERT INTO books(book_id, pub_id, bookname, isbn_no, no_of_pages, physical_copy_price, digital_copy_price, catagory_id, inventory_link) values(:BOOK_ID, :PUB_ID, :BOOKNAME, :ISBN_NO, :NO_OF_PAGES, :PHYSICAL_COPY_PRICE, :DIGITAL_COPY_PRICE, :CATAGORY_ID, :INVENTORY_LINK)";
         try{
             $dbconn = $this->getConnection();

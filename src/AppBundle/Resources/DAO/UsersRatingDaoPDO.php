@@ -1,5 +1,5 @@
 <?php
-
+namespace AppBundle\Resources\DAO;
 /*
  * To change this license header, choose License Headers in Project Properties.
  * To change this template file, choose Tools | Templates
@@ -11,13 +11,13 @@
  *
  * @author surbhi
  */
-class UsersRatingDaoPDO {
+class UsersRatingDaoPDO extends BaseDaoPDO {
     //put your code here
-      public function GetDbTag(){
-       return $this->DbTag;
+      public function getDbTag(){
+       return $this->dbTag;
     }
     
-    public function SaveIntoUsersRating($objUsersRating) {
+    public function saveIntoUsersRating($objUsersRating) {
         $query = "INSERT INTO users_rating(users_rating_id, user_id, book_id, rating, timestamp) values(:USERS_RATING_ID, :USER_ID, :BOOK_ID, :RATING, :TIMESTAMP)";
         try{
             $dbconn = $this->getConnection();
@@ -32,4 +32,5 @@ class UsersRatingDaoPDO {
         } catch (Exception $ex) {
                 $this->throwPDOException($e);
         }
+    }
 }
