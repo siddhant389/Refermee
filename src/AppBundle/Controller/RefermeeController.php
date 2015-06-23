@@ -22,19 +22,39 @@ use JMS\DiExtraBundle\Annotation as DI;
  * @author surbhi
  */
 
-/**
- * @config\Route("/home")
- * */
 
 class RefermeeController extends Controller {
 
     
    /**
-     * @config\Route("/page") 
+     * @config\Route("/homepage") 
      */
-    public function displayPage() {
-        echo "heloo nishant";die;
+    public function displayHomePage() {
+        
+        return new Response("Hi!!....testing authentication.");
+    }
+    /**
+     * @config\Route("/catalog") 
+     */
+    public function displayCatalogPage() {
+       
         
     }
+    
+    /**
+     * @config\Route("/description") 
+     */
+    public function displayBookDetailsPage() {
+        
+    }
+    
+    /**
+     * @config\Route("/recommendation") 
+     */
+    public function displayRecommendationPage() {
+        
+    }
+    
+    
 //put your code here
 }

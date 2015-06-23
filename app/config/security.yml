@@ -14,7 +14,7 @@ security:
         #jauth:
         #    id: jauth_user_provider
         in_memory:
-            memory:
+            memory: 
                 users:
                     user:  { password: userpass, roles: [ 'ROLE_USER' ] }
                     admin: { password: adminpass, roles: [ 'ROLE_ADMIN' ] }
@@ -26,23 +26,31 @@ security:
             pattern: ^/(_(profiler|wdt|error)|css|images|js)/
             security: false
 
-        login:
-            pattern:  ^/demo/secured/login$
-            security: false
+      #  login:
+       #     pattern:  ^/demo/secured/login$
+        #    security: false
 
-        secured_area:
-            pattern:    ^/demo/secured/
+        #secured_area:
+         #   pattern:    ^/demo/secured/
+          #  form_login:
+           #     check_path: /demo/secured/login_check
+            #    login_path: /demo/secured/login
+           # logout:
+            #    path:   /demo/secured/logout
+             #   target: /demo/
+        default:   
+            anonymous: ~
+            http_basic: ~
             form_login:
-                check_path: /demo/secured/login_check
-                login_path: /demo/secured/login
-            logout:
-                path:   /demo/secured/logout
-                target: /demo/
-            #anonymous: ~
-            #http_basic:
+                login_path: /login
+                check_path: /login_check
             #    realm: "Secured Demo Area"
+        
+            
 
     access_control:
+          # require ROLE_ADMIN for /admin*
+          - { path: ^/admin, roles: ROLE_ADMIN }
         #- { path: ^/login, roles: IS_AUTHENTICATED_ANONYMOUSLY, requires_channel: https }
         #
         # You must uncomment the two following rules to restrict access to paths
