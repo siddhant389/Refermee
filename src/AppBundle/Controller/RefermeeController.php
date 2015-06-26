@@ -39,7 +39,7 @@ class RefermeeController extends Controller {
         
     $arr = array("surbhi@gmail.com", "surbhi", "phone");
     $objUserDO = new UserDetails($arr);
-        echo "heloo nishant";die;
+        echo "heloo nishant";
         
     }
 //put your code here
