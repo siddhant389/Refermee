@@ -1,5 +1,5 @@
 <?php
-
+namespace AppBundle\Resources\model;
 /*
  * To change this license header, choose License Headers in Project Properties.
  * To change this template file, choose Tools | Templates
@@ -46,5 +46,47 @@ class PublisherDetails {
     public function getOrganisationName(){
         return $this->organisation_name;
     }
-    
+    public function setPubId($pub_id) {
+        $this->pub_id = $pub_id;
+    }
+     public function setPubUsername($pub_username) {
+        $this->pub_username = $pub_username;
+    }
+     public function setPassword($password) {
+        $this->password = $password;
+    }
+     public function setPubEmail($pub_email) {
+        $this->pub_email = $pub_email;
+    }
+     public function setAddress($address) {
+        $this->address = $address;
+    }
+     public function setOrganisationName($organisation_name) {
+        $this->organisation_name = $organisation_name;
+    }
+     public function setCity($city) {
+        $this->city = $city;
+    }
+     public function setPincode($pincode) {
+        $this->pincode = $pincode;
+    }
+    public static function setPublisherDashboardForRegPublisher($objPublisher){
+        $objPublisherDetails = new PublisherDetails();
+        if($objPublisher->getPublisherId() != NULL){
+            $objPublisherDetails->setPubId($objPublisher->pub_id);
+            $objPublisherDetails->setPubUsername($objPublisher->pub_username);
+            $objPublisherDetails->setPassword($objPublisher->pub_password);
+            $objPublisherDetails->setEmail($objPublisher->pub_email);
+            $objPublisherDetails->setAddress($objPublisher->address);
+            $objPublisherDetails->setOrganisationName($objPublisher->organisation_name);
+            $objPublisherDetails->setCity($objPublisher->city);
+            $objPublisherDetails->setPincode($objPublisher->pincode);
+           
+            
+        }
+        else{
+            echo "publisher not registered";
+        }
+        
+    }
 }
