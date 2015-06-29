@@ -1,21 +1,43 @@
 <?php
 namespace AppBundle\Resources\DAO;
-/* 
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 
-abstract class BaseDaoPDO{
-    
-    public abstract function getDbTag();
-    
-     public function getConnection () {
-        //echo "hello";
-        try {
-        $dbh = new PDO("mysql:host={$this->host};dbname={$this->db}", $this->user,$this->pass);
-        } catch (PDOException $e) {
-            echo 'Connection failed: ' . $e->getMessage();
-                        }
-     }
+use JMS\DiExtraBundle\Annotation as DI;
+use PDO;
+use ThirdParty\DbFramework\db;
+/*
+ * To change this template, choose Tools | Templates
+* and open the template in the editor.
+*/
+
+/**
+ * Description of BaseDaoPDO
+ *
+ *
+ */
+/**
+ * @DI\Service("base.dao", public=true, abstract=true)
+ */
+abstract class BaseDaoPDO {
+
+
+	public abstract function getDbTag();
+
+	/**
+	 * Gets a sharded DB connection based on the client id and the db tag (wrt the dao)
+	 * @param type $clientId
+	 * @return PDO connection
+	*/
+	public function getConnection() {
+         
+		return \ReferDatabaseManager::getInstance()->getDatabase($this->getDbTag())->getConnection();
+	}
+
+
+  public function throwPDOException($e) {
+    throw new \Exception($e);
+		//print_r($e);
+	}
+
 }
+
+?>

@@ -18,10 +18,9 @@ if (isset($_SERVER['HTTP_CLIENT_IP'])
 }
 
 $loader = require_once __DIR__.'/../app/bootstrap.php.cache';
-Debug::enable(error_reporting() & ~E_NOTICE);
+//Debug::enable(error_reporting() & ~E_NOTICE);
 // enable the line below to see warnings & notices as exceptions
 //Debug::enable();
-
 require_once __DIR__.'/../app/AppKernel.php';
 
 $kernel = new AppKernel('dev', true);

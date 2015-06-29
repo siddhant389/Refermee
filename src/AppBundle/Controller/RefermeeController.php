@@ -29,17 +29,25 @@ use AppBundle\Resources\model\UserDetails;
  * */
 
 class RefermeeController extends Controller {
-
+    /**
+   * @DI\Inject("userDashboard.manager")
+   */
+    private $userDashboardManager;
     
    /**
      * @config\Route("/page") 
      */
     
     public function displayPage() {
-        
+     
+        echo "heloo nishant";   
     $arr = array("surbhi@gmail.com", "surbhi", "phone");
     $objUserDO = new UserDetails($arr);
-        echo "heloo nishant";die;
+        echo "heloo nishant 2 ";
+        $myvalue = $this->userDashboardManager->runDao($objUserDO);
+       
+        echo $myvalue;
+        return new Response();
         
     }
 //put your code here
