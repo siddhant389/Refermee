@@ -21,9 +21,8 @@ define('APPLY_HISTORY_ENV','DEV');
 define('CONNECTION_TIME_OUT',2);
 define('REQUEST_TIME_OUT',2);
 define('DOMAIN_MANAGER_CONFIG', "/usr/local/apache-2.4.3/htdocs/ApplyGit/NitinApply/app/config/");
-define("NC_DB_CONFIG",'/usr/local/apache-2.4.3/htdocs/ApplyGit/NitinApply/app/config/database/');
+define("DB_CONFIG",'/var/www/html/Refermee/app/config/database/');
 define('NAUKRI_CACHE_CONFIG', '/usr/local/apache-2.4.3/htdocs/ApplyGit/NitinApply/app/config/');
-#define("NC_DB_CONFIG",'/usr/local/apache-2.4.3/htdocs/JobSearchRevamp/PoorvaJSRevamp/app/config/
 define("NC_REQUEST_PROVIDER",'ncSuperGlobalRequestProvider');
 define('_COOKIE_DOMAIN', '.infoedge.com');
 define('_Key_Old','test1');

@@ -27,7 +27,7 @@ class CatagoryDaoPDO extends BaseDaoPDO {
     }
 
     public function saveIntoCatagory($objCatagory) {
-        $query = "INSERT INTO catagory(catagory_id, catagory_name, lft, rgt) values(:PPU_TYPE_ID, :TYPE)";
+        $query = "INSERT INTO catagory(catagory_id, catagory_name, lft, rgt) values(:CATAGORY_ID, :CATAGORY_NAME, :LFT, :RGT)";
         try {
             $dbconn = $this->getConnection();
             $stmt = $dbconn->prepare($query);
