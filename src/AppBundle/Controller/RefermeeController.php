@@ -41,10 +41,13 @@ class RefermeeController extends Controller {
     public function displayPage() {
      
         echo "heloo nishant";   
-    $arr = array("surbhi@gmail.com", "surbhi", "phone");
-    $objUserDO = new UserDetails($arr);
-        echo "heloo nishant 2 ";
-        $myvalue = $this->userDashboardManager->runDao($objUserDO);
+    $arr = array();
+    $arr['email'] = "siddhant389@gmail.com";
+    $arr['username'] = "siddhant";
+    $arr['password']= "phone";
+    $objUserDetails = UserDetails::setLoginCredentials($arr);
+        echo "   heloo nishant 2 ";
+        $myvalue = $this->userDashboardManager->runDao($objUserDetails);
        
         echo $myvalue;
         return new Response();

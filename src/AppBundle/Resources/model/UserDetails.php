@@ -197,17 +197,13 @@ class UserDetails {
     }
     
    
-    public static function setLoginCredentials($objUser){
+    public static function setLoginCredentials($arrUserInfo){
        $objUserDetails = new UserDetails();
-       if($objUser->getUserId() != NULL){
-       $objUserDetails->setUserId($objUser->user_id);
-       $objUserDetails->setUsername($objUser->username);
-       $objUserDetails->setPassword($objUser->password);
-       $objUserDetails->setEmail($objUser->email);
-       }
-        else {
-           echo 'user not found';
-        }
+       $objUserDetails->setUserId('');
+       $objUserDetails->setUsername($arrUserInfo['username']);
+       $objUserDetails->setPassword($arrUserInfo['password']);
+       $objUserDetails->setEmail($arrUserInfo['email']);
+       return $objUserDetails;
     }
     public static function setUserDashboardForRegUser($objUser){
         $objUserDetails = new UserDetails();

@@ -9,8 +9,8 @@ class ReferPdoDatabase extends ReferDatabase
 
   public function __construct($dsn, $username, $password, $reconnect = false, $debug=false)
   {
-    $ncDnsResolver = new ReferDnsResolver();
-		$this->dsn = $ncDnsResolver->resolveDNS($dsn);
+    $ReferDnsResolver = new ReferDnsResolver();
+		$this->dsn =$dsn;   // $ReferDnsResolver->resolveDNS($dsn);
 		$this->username = $username;
 		$this->password = $password;
 		$this->debug = $debug;

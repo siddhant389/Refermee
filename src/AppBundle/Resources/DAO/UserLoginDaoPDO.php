@@ -33,13 +33,13 @@ class UserLoginDaoPDO extends BaseDaoPDO {
        $objUserLoginDao = new UserLoginDaoPDO();
        try{
         $conn = $this->getConnection();
-        $saveQuery = "INSERT INTO user_login(user_id, username, email, password, registration_timestamp) VALUES (:USER_ID, :USERNAME, :EMAIL, :PASSWORD, :REGISTRATION_TIMESTAMP)";
+        $saveQuery = "INSERT INTO user_login(user_id, username, email, password) VALUES (:USER_ID, :USERNAME, :EMAIL, :PASSWORD)";
         $q = $conn->prepare($saveQuery);
         $q->bindParam(":USER_ID", $objUserDetails->getUserId());
         $q->bindParam(":USERNAME", $objUserDetails->getUsername());
         $q->bindParam(":EMAIL", $objUserDetails->getEmail());
         $q->bindParam(":PASSWORD", $objUserDetails->getPassword());
-        $q->bindParam(":REGISTRATION_TIMESTAMP", $objUserDetails->getRegistrationTimestamp());
+         //$objUserDetails->getRegistrationTimestamp());
         
         $q->execute();
         } catch (PDOException $e) {

@@ -5,14 +5,16 @@ class ReferDnsResolver
   {
     $pattern = "/\{([^\}]*)\}/";
     preg_match_all($pattern, $dsn, $matches);
-   // print_r($matches);
+    
     
     if(count($matches) > 0)
     {
       foreach($matches[1] as $match)
       {
+          
      
         $resolvedAddr = $this->getIpAddress($match, $pdoDb);
+        echo "kkk";print_r($resolvedAddr);
         $dsn = preg_replace("/\{".$match."\}/", $resolvedAddr, $dsn);
       } 
     }
@@ -21,12 +23,13 @@ class ReferDnsResolver
 
   private function getIpAddress($match, $pdoDb = true)
   {
+      print_r($match);echo "\nuuuuuuuuuu";
       
-    $srvRecords = $this->getDnsRecord("_db._tcp.".$match.".", "SRV");
-    print_r($srvRecords);
+    $srvRecords = $this->getDnsRecord("_db._tcp.".$match, "SRV");
+   echo"ooooo"; print_r($srvRecords);
     if(count($srvRecords) > 0)
     {
-      $host = trim($srvRecords[0]["host"]);
+      $host = trim($srvRecords[0]["target"]);
       $port = trim($srvRecords[0]["port"]);
 
       if($port && $host){  
@@ -61,11 +64,10 @@ class ReferDnsResolver
 
   }
 
-  private function getDnsRecord($domain, $recordType)
+  private function getDnsRecord($domain, $type)
   {
-     print_r($domain);
-      echo "hi         ";
-    switch($recordType)
+      print_r($domain); echo "\ntttttttttttt";
+    switch($type)
     {
       case "SRV":
         $type = DNS_SRV;
@@ -74,12 +76,12 @@ class ReferDnsResolver
         $type = DNS_A;
         break;
       default:
-        $type = DNS_ANY;        $type = DNS_ANY;
+        $type = DNS_ANY;   
 
         break;
     }
  
-   $records = dns_get_record("google.com", DNS_A);
+   $records = dns_get_record($domain, $type);
    print_r($records); 
     if(!$records || count($records) == 0){
         $records = dns_get_record($domain, $type);

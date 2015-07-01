@@ -28,8 +28,9 @@ abstract class BaseDaoPDO {
 	 * @return PDO connection
 	*/
 	public function getConnection() {
-         
-		return \ReferDatabaseManager::getInstance()->getDatabase($this->getDbTag())->getConnection();
+         $dbh = new PDO('mysql:host=localhost;port=3306;dbname=Refermee', "root", "itsme");
+         return $dbh;
+	//return \ReferDatabaseManager::getInstance()->getDatabase($this->getDbTag())->getConnection();
 	}
 
 
