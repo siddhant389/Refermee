@@ -13,6 +13,10 @@ namespace AppBundle\Resources\model;
  */
 class PublisherDetails {
     //put your code here
+    
+    private $arrPublisherDetails = array();
+
+
     private $pub_id = '';
     private $pub_username = '';
     private $pub_email = '';
@@ -21,6 +25,16 @@ class PublisherDetails {
     private $city = '';
     private $pincode = '';
     private $organisation_name = '';
+    
+    
+    
+     public function __construct($arr = array()) {
+        foreach ($arr as $key => $value) {
+            $this->$key = $value;
+                            
+        }
+    
+     }
     
     public function getPubId(){
         return $this->pub_id;
@@ -47,28 +61,28 @@ class PublisherDetails {
         return $this->organisation_name;
     }
     public function setPubId($pub_id) {
-        $this->pub_id = $pub_id;
+        $this->arrPublisherDetails[Constants::PUB_ID] = $pub_id;
     }
      public function setPubUsername($pub_username) {
-        $this->pub_username = $pub_username;
+        $this->arrPublisherDetails[Constants::PUB_USERNAME] = $pub_username;
     }
      public function setPassword($password) {
-        $this->password = $password;
+        $this->arrPublisherDetails[Constants::PUB_PASSWORD] = $password;
     }
      public function setPubEmail($pub_email) {
-        $this->pub_email = $pub_email;
+        $this->arrPublisherDetails[Constants::PUB_EMAIL] = $pub_email;
     }
      public function setAddress($address) {
-        $this->address = $address;
+        $this->arrPublisherDetails[Constants::ADDRESS] = $address;
     }
      public function setOrganisationName($organisation_name) {
-        $this->organisation_name = $organisation_name;
+        $this->arrPublisherDetails[Constants::ORGANISATION_NAME] = $organisation_name;
     }
      public function setCity($city) {
-        $this->city = $city;
+        $this->arrPublisherDetails[Constants::CITY] = $city;
     }
      public function setPincode($pincode) {
-        $this->pincode = $pincode;
+        $this->arrPublisherDetails[Constants::PINCODE] = $pincode;
     }
     public static function setPublisherDashboardForRegPublisher($objPublisher){
         $objPublisherDetails = new PublisherDetails();

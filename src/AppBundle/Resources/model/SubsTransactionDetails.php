@@ -13,6 +13,18 @@ namespace AppBundle\Resources\model;
  */
 class SubsTransactionDetails {
     //put your code here
+    
+    private $arrSubsTransactionDetails =  array();
+    
+    
+     public function __construct($arr = array()) {
+        foreach ($arr as $key => $value) {
+            $this->$key = $value;
+                            
+        }
+     }
+    
+    
      public function getSubsTransId(){
         return $this->subs_trans_id;
     }
@@ -23,16 +35,14 @@ class SubsTransactionDetails {
         return $this->subs_timestamp;
     }
      public function setSubsTransId($subs_trans_id) {
-        $this->subs_trans_id = $subs_trans_id;
+        $this->arrSubsTransactionDetails[Constants::SUBS_TRANS_ID] = $subs_trans_id;
     }
      public function setSubsTypeId($subs_type_id) {
-        $this->subs_type_id = $subs_type_id;
+        $this->arrSubsTransactionDetails[Constants::SUBS_TYPE_ID] = $subs_type_id;
     }
      public function setSubsTimestamp($subs_timestamp) {
-        $this->subs_timestamp = $subs_timestamp;
+        $this->arrSubsTransactionDetails[Constants::SUBS_TIMESTAMP] = $subs_timestamp;
     }
-    public static function setSubsTransactionDetails($objTrans){
-        $objSubsTransactionDetails = new SubsTransactionDetails();
-        
-    }
+
+
 }

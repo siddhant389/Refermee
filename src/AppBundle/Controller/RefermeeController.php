@@ -42,14 +42,19 @@ class RefermeeController extends Controller {
      
         echo "heloo nishant";   
     $arr = array();
-    $arr['email'] = "siddhant389@gmail.com";
-    $arr['username'] = "siddhant";
-    $arr['password']= "phone";
-    $objUserDetails = UserDetails::setLoginCredentials($arr);
-        echo "   heloo nishant 2 ";
-        $myvalue = $this->userDashboardManager->runDao($objUserDetails);
-       
+    $arr['email'] = "ddhant1389@gmail.com";
+    $arr['username'] = "siddt";
+    $arr['password']= "pne";
+    //$objUserInfo = 
+    $objUserDetails = new UserDetails($arr);
+    
+        $myvalue = $this->userDashboardManager->saveloginDetails($objUserDetails);
+        echo "surbhi";
+    $objBooksDetails = new BooksDetails($arr1);
+    echo "surbhi";
+        $mynewvalue = $this->Catagorymanager->showCatagory($objBooksDetails);
         echo $myvalue;
+        echo $mynewvalue;
         return new Response();
         
     }

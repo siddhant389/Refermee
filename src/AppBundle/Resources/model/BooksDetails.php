@@ -13,6 +13,17 @@ namespace AppBundle\Resources\model;
  */
 class BooksDetails {
     //put your code here
+    
+    
+    private $arrBookDetails = array();
+
+    public function __construct($arr = array()) {
+        foreach ($arr as $key => $value) {
+            $this->$key = $value;
+                            
+        }
+     }
+        
      public function getBookId(){
         return $this->book_id;
     }
@@ -59,46 +70,46 @@ class BooksDetails {
         return $this->genere_name;
     }
     public function setBookId($book_id) {
-        $this->book_id = $book_id;
+        $this->arrBookDetails[Constants::BOOK_ID] = $book_id;
     }
     public function setBookName($book_name) {
-        $this->book_name = $book_name;
+        $this->arrBookDetails[Constants::BOOK_NAME] = $book_name;
     }
     public function setIsbnNo($isbn_no) {
-        $this->isbn_no = $isbn_no;
+        $this->arrBookDetails[Constants::ISBN_NO] = $isbn_no;
     }
     public function setNoOfPages($no_of_pages) {
-        $this->no_of_pages = $no_of_pages;
+        $this->arrBookDetails[Constants::NO_OF_PAGES] = $no_of_pages;
     }
     public function setPhysicalPrice($physical_copy_price) {
-        $this->physical_copy_price = $physical_copy_price;
+        $this->arrBookDetails[Constants::PHYSICAL_PRICE] = $physical_copy_price;
     }
     public function setDigitalPrice($digital_copy_price) {
-        $this->digital_copy_price = $digital_copy_price;
+        $this->arrBookDetails[Constants::DIGITAL_PRICE] = $digital_copy_price;
     }
     public function setCatagoryId($catagory_id) {
-        $this->catagory_id = $catagory_id;
+        $this->arrBookDetails[Constants::CATAGORY_ID] = $catagory_id;
     }
     public function setCatagoryName($username) {
-        $this->catagory_name = $catagory_name;
+        $this->arrBookDetails[Constants::CATAGORY_NAME] = $catagory_name;
     }
     public function setLft($lft) {
-        $this->lft = $lft;
+        $this->arrBookDetails[Constants::LFT] = $lft;
     }
     public function setRgt($rgt) {
-        $this->rgt = $rgt;
+        $this->arrBookDetails[Constants::RGT] = $rgt;
     }
     public function setInventoryLink($inventory_link) {
-        $this->inventory_link = $inventory_link;
+        $this->arrBookDetails[Constants::INVENTORY_LINK] = $inventory_link;
     }
     public function setAuthorId($author_id) {
-        $this->author_id = $author_id;
+        $this->arrBookDetails[Constants::AUTHOR_ID] = $author_id;
     }
     public function setAuthorName($author_name) {
-        $this->author_name = $author_name;
+        $this->arrBookDetails[Constants::AUTHOR_NAME] = $author_name;
     }
     public function setGenereName($genere_name) {
-        $this->genere_name = $genere_name;
+        $this->arrBookDetails[Constants::GENERE_NAME] = $genere_name;
     }
     public static function setBookInfo ($objBook) {
         $objBookDetails = new BookDetails();

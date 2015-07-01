@@ -14,9 +14,10 @@ namespace AppBundle\Resources\model;
 class UserDetails {
     //put your code here
     
-     
     
-    
+    private $arrUserDetails = array();  
+
+
     /** @var Integer */
     private $user_id = '';
     
@@ -79,9 +80,13 @@ class UserDetails {
     
      /** @var timestamp */
     private $registration_timestamp = '';
-
-
-    public function __construct() {
+    
+    
+    public function __construct($arr = array()) {
+        foreach ($arr as $key => $value) {
+            $this->$key = $value;
+                            
+        }
     }
     
     public function getUserId(){
@@ -145,92 +150,86 @@ class UserDetails {
         return $this->registration_timestamp;
     }
     public function setUsername($username) {
-        $this->username = $username;
+        $this->arrUserDetails[Constants::USERNAME] = $username;
     }
     public function setUserId($user_id) {
-        $this->user_id = $user_id;
+        $this->arrUserDetails[Constants::USER_ID]= $user_id;
     }
     public function setPassword($password) {
-        $this->password = $password;
+        $this->arrUserDetails[Constants::PASSWORD] = $password;
     }
     public function setEmail($email) {
-        $this->email = $email;
+        $this->arrUserDetails[Constants::EMAIL] = $email;
     }
     public function setInstituteName($institute_name) {
-        $this->institute_name = $institute_name;
+        $this->arrUserDetails[Constants::INSTITUTE_NAME] = $institute_name;
     }
     public function setInstituteId($institute_id) {
-        $this->institute_id = $institute_id;
+        $this->arrUserDetails[Constants::INSTITUTE_ID] = $institute_id;
     }
     public function setYearOfCompletion($year_of_completion) {
-        $this->year_of_completion = $year_of_completion;
+        $this->arrUserDetails[Constants::YEAR_OF_COMPLETION] = $year_of_completion;
     }
     public function setCourseId($course_id) {
-        $this->course_id = $course_id;
+        $this->arrUserDetails[Constants::COURSE_ID] = $course_id;
     }
     public function setCourseName($course_name) {
-        $this->course_name = $course_name;
+        $this->arrUserDetails[Constants::COURSE_NAME] = $course_name;
     }
     public function setSpecificationId($specification_id) {
-        $this->specification_id = $specification_id;
+        $this->arrUserDetails[Constants::SPECIFICATION_ID] = $specification_id;
     }
     public function setSpecificationName($specification_name) {
-        $this->specification_name = $specification_name;
+        $this->arrUserDetails[Constants::SPECIFICATION_NAME] = $specification_name;
     }
     public function setOrganisation($organisation) {
-        $this->organisation = $organisation;
+        $this->arrUserDetails[Constants::ORGANISATION] = $organisation;
     }
     public function setProfession($profession) {
-        $this->profession = $profession;
+        $this->arrUserDetails[Constants::PROFESSION] = $profession;
     }
     public function setSpecification($specification) {
-        $this->specification = $specification;
+        $this->arrUserDetails[Constants::SPECIFICATION] = $specification;
     }
     public function setRegistrationTimestamp($registration_timestamp) {
-        $this->registration_timestamp = $registration_timestamp;
+        $this->arrUserDetails[Constants::REGISTRATION_TIMESTAMP] = $registration_timestamp;
     }
     public function setContact($contact) {
-        $this->contact = $contact;
+        $this->arrUserDetails[Constants::CONTACT] = $contact;
     }
     public function getContact() {
         return $this->contact;
     }
     
    
-    public static function setLoginCredentials($arrUserInfo){
+    public static function setLoginCredentials($objUserInfo){
        $objUserDetails = new UserDetails();
        $objUserDetails->setUserId('');
-       $objUserDetails->setUsername($arrUserInfo['username']);
-       $objUserDetails->setPassword($arrUserInfo['password']);
-       $objUserDetails->setEmail($arrUserInfo['email']);
+       $objUserDetails->setUsername($objUserInfo->username);
+       $objUserDetails->setPassword($objUserInfo->password);
+       $objUserDetails->setEmail($objUserInfo->email);
        return $objUserDetails;
     }
-    public static function setUserDashboardForRegUser($objUser){
+    public static function setProfessionalDetails($objProfession){
+        $objUserDetails = new UserDetails();
+        if($objProfession->getUserId() != NULL){
+            
+            $objUserDetails->setOrganisation($objProfession->arrUserDetails[Constants::ORGANISATION]);
+            $objUserDetails->setSpecification($objProfession->arrUserDetails[Constants::SPECIFICATION]);
+            $objUserDetails->setProfession($objProfession->arrUserDetails[Constants::PROFESSION]);
+            $objUserDetails->setContact($objProfession->arrUserDetails[Constants::CONTACT]);
+        }
+    }
+    public function setEducationalDetails($arrEducation) {
         $objUserDetails = new UserDetails();
         if($objUser->getUserId() != NULL){
-            $objUserDetails->setUserId($objUser->user_id);
-            $objUserDetails->setUserName($objUser->username);
-            $objUserDetails->setPassword($objUser->password);
-            $objUserDetails->setEmail($objUser->email);
-            $objUserDetails->setInstituteName($objUser->institute_name);
+            $objUserDetails->setInstituteName($arrEducation['institute_name']);
             $objUserDetails->setInstituteId($objUser->institute_id);
             $objUserDetails->setYearOfCompletion($objUser->year_of_completion);
             $objUserDetails->setCourseId($objUser->course_id);
             $objUserDetails->setCourseName($objUser->course_name);
             $objUserDetails->setSpecificationId($objUser->specification_id);
             $objUserDetails->setSpecificationName($objUser->specification_name);
-            $objUserDetails->setOrganisation($objUser->organisation);
-            $objUserDetails->setSpecification($objUser->specification);
-            $objUserDetails->setProfession($objUser->profession);
-            $objUserDetails->setContact($objUser->contact);
-            $objUserDetails->setRegistrationTimestamp($objUser->registration_timestamp);
-            
-        }
-        else{
-            echo "user not registered";
-        }
-        
-        
     }
-   
+    }
 }

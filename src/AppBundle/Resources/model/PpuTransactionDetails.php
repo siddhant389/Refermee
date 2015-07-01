@@ -13,6 +13,17 @@ namespace AppBundle\Resources\model;
  */
 class PpuTransactionDetails {
     //put your code here
+    
+    private $arrPpuTransaction;
+
+
+    public function __construct($arr = array()) {
+        foreach ($arr as $key => $value) {
+            $this->$key = $value;
+                            
+        }
+     }
+    
      public function getPpuTransId(){
         return $this->ppu_trans_id;
     }
@@ -27,16 +38,16 @@ class PpuTransactionDetails {
     }
     
     public function setPpuTransId($ppu_trans_id) {
-        $this->ppu_trans_id = $ppu_trans_id;
+        $this->arrPpuTransaction[Constants::PPU_TRANS_ID] = $ppu_trans_id;
     }
     public function setPpuTypeId($ppu_type_id) {
-        $this->ppu_type_id = $ppu_type_id;
+        $this->arrPpuTransaction[Constants::PPU_TYPE_ID] = $ppu_type_id;
     }
     public function setPpuTimestamp($ppu_trans_id) {
-        $this->ppu_trans_id = $ppu_trans_id;
+        $this->arrPpuTransaction[Constants::PPU_TIMESTAMP] = $ppu_timestamp;
     }
     public function setPpuType($ppu_type) {
-        $this->ppu_type = $ppu_type;
+        $this->arrPpuTransaction[Constants::PPU_TYPE] = $ppu_type;
     }
    
      

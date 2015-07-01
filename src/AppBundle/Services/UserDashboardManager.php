@@ -39,7 +39,7 @@ class UserDashboardManager {
    /** @DI\Inject("catagory.dao") */
   public $objCatagoryDao;
     
-   public function runDao($objUser){
+   public function saveLoginDetails($objUser){
        $result = $this->objUserLoginDao->saveIntoUserLogin($objUser);
         echo $result;
     }
