@@ -43,9 +43,38 @@ class UserLoginDaoPDO extends BaseDaoPDO {
         
         $q->execute();
         } catch (PDOException $e) {
-            echo 'exception ' . $e->getMessage();die;
+            echo 'exception ' . $e->getMessage();
                         }
+        
+        
       }
+     public function getUserDetails ($objUserDetails){
+         $arrRow = array();
+         $arrTemp = array();
+         $objUserLoginDao = new UserLoginDaoPDO();
+         try{
+        $conn = $this->getConnection();
+        $saveQuery = "SELECT username, email FROM user_login";
+        $q = $conn->prepare($saveQuery);
+        $q->bindParam(":USER_ID", $objUserDetails->getUserId());
+        $q->bindParam(":USERNAME", $objUserDetails->getUsername());
+        $q->bindParam(":EMAIL", $objUserDetails->getEmail());
+        $q->bindParam(":PASSWORD", $objUserDetails->getPassword());
+         //$objUserDetails->getRegistrationTimestamp());
+         $q->execute();
+         while($arrDetail = $q->fetch(PDO::FETCH_ASSOC))
+           {
+            $arrRow = $arrDetail['username'];
+            $arrTemp = $arrDetail['email'];
+          echo '<pre>';  print_r($arrRow); echo '</pre>'; 
+         echo '<pre>';  print_r($arrTemp); echo '</pre>'; 
+         }
+      // $arrDetail = $q->fetch(PDO::FETCH_ASSOC);
+       //print_r($arrDetail);
+        } catch (PDOException $e) {
+            echo 'exception ' . $e->getMessage();
+                        }
+     }
 
     
 }

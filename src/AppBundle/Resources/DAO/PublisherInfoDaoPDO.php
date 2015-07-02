@@ -1,5 +1,9 @@
 <?php
+
+
 namespace AppBundle\Resources\DAO;
+
+use JMS\DiExtraBundle\Annotation as DI;
 /*
  * To change this license header, choose License Headers in Project Properties.
  * To change this template file, choose Tools | Templates
@@ -10,6 +14,11 @@ namespace AppBundle\Resources\DAO;
  * Description of PublisherInfoDaoPDO
  *
  * @author surbhi
+ */
+
+
+/**
+ *  @DI\Service("publisherInfo.dao")
  */
 class PublisherInfoDaoPDO extends BaseDaoPDO {
     //put your code here

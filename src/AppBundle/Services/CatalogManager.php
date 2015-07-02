@@ -13,31 +13,27 @@ use Symfony\Component\Validator\Constraints\False;
  */
 
 /**
- * Description of CatalogManager
+ * Description of CatagoryManager
  *
  * @author surbhi
  */
 
 /**
- * @DI\Service("catagory.manager")
+ * @DI\Service("catalog.manager")
  */
 
-
-
-class CatagoryManager {
-    //put your code here\
+class CatalogManager {
+        
      /** @DI\Inject("catagory.dao") */
   public $objCatagoryDao;
+ 
   
   /** @DI\Inject("books.dao") */
   public $objBooksDao;
   
-   /** @DI\Inject("userLogin.dao") */
-  public $objUserLoginDao;
-    
     public function showCatagory($objShowCatagory) {
         $resultCatagory = $this->objCatagoryDao->retrieveLeafNodes($objShowCatagory);
-        return $resultCatagory;
+         echo $resultCatagory;
         
     }
 }

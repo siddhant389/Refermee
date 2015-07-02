@@ -2,6 +2,7 @@
 
 namespace AppBundle\Resources\DAO;
 use JMS\DiExtraBundle\Annotation as DI;
+use PDO;
 
 /*
  * To change this license header, choose License Headers in Project Properties.
@@ -39,6 +40,8 @@ class CatagoryDaoPDO extends BaseDaoPDO {
         } catch (Exception $ex) {
             $this->throwPDOException($e);
         }
+        $result = $stmt->fetch(PDO::FETCH_ASSOC);
+        print_r($result);
     }
 
     public function retrieveFullTree($objCatagory) {
@@ -55,16 +58,24 @@ class CatagoryDaoPDO extends BaseDaoPDO {
     }
 
     public function retrieveLeafNodes($objCatagory) {
+        $objCatagoryDao = new CatagoryDaoPDO();
+        $arrRow = array();
         $query = "SELECT catagory_name FROM catagory WHERE rgt = lft +1";
         try {
             $dbconn = $this->getConnection();
             $stmt = $dbconn->prepare($query);
             $stmt->bindValue(':CATAGORY_NAME', $objCatagory->getCatagoryName());
             $stmt->execute();
-            $arrDetail = $stmt->fetchAll(PDO::FETCH_ASSOC);
-        } catch (Exception $ex) {
+            while($arrDetail = $stmt->fetch(PDO::FETCH_ASSOC))
+            {
+                $arrRow = $arrDetail['catagory_name'];
+              echo '<pre>';  print_r($arrRow); echo '</pre>'; 
+            }
+                
+             } catch (Exception $ex) {
             $this->throwPDOException($e);
         }
+        
     }
 
     public function retrieveSinglePath($objCatagory) {
@@ -74,7 +85,8 @@ class CatagoryDaoPDO extends BaseDaoPDO {
             $stmt = $dbconn->prepare($query);
             $stmt->bindValue(':CATAGORY_NAME', $objCatagory->getCatagoryName());
             $stmt->execute();
-            $arrDetail = $stmt->fetchAll(PDO::FETCH_ASSOC);
+            $result = $stmt->fetchAll(PDO::FETCH_ASSOC);
+        print_r($result);
         } catch (Exception $ex) {
             $this->throwPDOException($e);
         }
@@ -87,9 +99,10 @@ class CatagoryDaoPDO extends BaseDaoPDO {
             $stmt = $dbconn->prepare($query);
             $stmt->bindValue(':CATAGORY_NAME', $objCatagory->getCatagoryName());
             $stmt->execute();
-            $arrDetail = $stmt->fetchAll(PDO::FETCH_ASSOC);
+           $arrDetail = $stmt->fetchAll(PDO::FETCH_ASSOC);
+            print_r($arrDetail);
         } catch (Exception $ex) {
-            $this->throwPDOException($e);
+           echo 'exception ' . $e->getMessage();die;
         }
     }
     public static function addNodes($objCatagory) {
@@ -99,6 +112,8 @@ class CatagoryDaoPDO extends BaseDaoPDO {
             $stmt = $dbconn->prepare($query);
             $stmt->bindValue(':CATAGORY_NAME', $objCatagory->getCatagoryName());
             $stmt->execute();
+            $arrDetail = $stmt->fetchAll(PDO::FETCH_ASSOC);
+            print_r($arrDetail);
             
         } catch (Exception $ex) {
             $this->throwPDOException($e);
@@ -112,6 +127,8 @@ class CatagoryDaoPDO extends BaseDaoPDO {
             $stmt = $dbconn->prepare($query);
             $stmt->bindValue(':CATAGORY_NAME', $objCatagory->getCatagoryName());
             $stmt->execute();
+            $arrDetail = $stmt->fetchAll(PDO::FETCH_ASSOC);
+            print_r($arrDetail);
             
         } catch (Exception $ex) {
             $this->throwPDOException($e);

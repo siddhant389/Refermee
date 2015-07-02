@@ -24,9 +24,11 @@ class UserInfoDaoPDO extends BaseDaoPDO{
     }
     
     public function insertIntoUserInfo($objUserInfo){
-          $query = "INSERT INTO user_info(user_info_id, user_id, name, location, sex, age, contact) values(:USER_INFO_ID, :USER_ID, :NAME, :LOCATION, :SEX, :AGE, :CONTACT)";
+        $objUserInfo = new UserInfoDaoPDO;
+          
         try{
             $dbconn = $this->getConnection();
+            $query = "INSERT INTO user_info(user_info_id, user_id, name, location, sex, age, contact) values(:USER_INFO_ID, :USER_ID, :NAME, :LOCATION, :SEX, :AGE, :CONTACT)";
             $stmt = $dbconn->prepare($query);
             $stmt->bindValue(':USER_INFO_ID', $objBooks->getUserInfoId());
             $stmt->bindValue(':USER_ID', $objBooks->getUserId());
@@ -39,4 +41,32 @@ class UserInfoDaoPDO extends BaseDaoPDO{
                 $this->throwPDOException($e);
         }
     }
+    
+     public function getUserInfo ($objUserInfo){
+         $arrRow = array();
+         $arrTemp = array();
+         $objUserLoginDao = new UserLoginDaoPDO();
+         try{
+        $conn = $this->getConnection();
+        $saveQuery = "SELECT username, email FROM user_login";
+        $q = $conn->prepare($saveQuery);
+        $q->bindParam(":USER_ID", $objUserDetails->getUserId());
+        $q->bindParam(":USERNAME", $objUserDetails->getUsername());
+        $q->bindParam(":EMAIL", $objUserDetails->getEmail());
+        $q->bindParam(":PASSWORD", $objUserDetails->getPassword());
+         //$objUserDetails->getRegistrationTimestamp());
+         $q->execute();
+         while($arrDetail = $q->fetch(PDO::FETCH_ASSOC))
+           {
+            $arrRow = $arrDetail['username'];
+            $arrTemp = $arrDetail['email'];
+          echo '<pre>';  print_r($arrRow); echo '</pre>'; 
+         echo '<pre>';  print_r($arrTemp); echo '</pre>'; 
+         }
+      // $arrDetail = $q->fetch(PDO::FETCH_ASSOC);
+       //print_r($arrDetail);
+        } catch (PDOException $e) {
+            echo 'exception ' . $e->getMessage();
+                        }
+     }
 }

@@ -44,6 +44,21 @@ class UserDashboardManager {
         echo $result;
     }
     
+    public function showUserDetails($objUser) {
+      $result = $this->objUserLoginDao->getUserDetails($objUser);
+      echo $result;
+    }
+    
+    public function saveUserInfo($objUser) {
+      $result = $this->objUserInfoDao->insertIntoUserInfo($objUser);
+      echo $result;
+    }
+    
+    public function showUserInfo($objUser) {
+      $result = $this->objUserInfoDao->getUserInfo($objUser);
+      echo $result;
+    }
+    
         
     }
     //public function  ($param); 
