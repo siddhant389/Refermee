@@ -14,9 +14,10 @@ use Facebook\Entities\AccessToken;
 use Facebook\HttpClients\FacebookCurlHttpClient;
 use Facebook\HttpClients\FacebookHttpable;
 // init app with app id and secret
-FacebookSession::setDefaultApplication( 'Your APP ID','Your APP Secret' );
+FacebookSession::setDefaultApplication( '
+487273824755899','56fb61f06909f2c57d6d44391a1a73c2' );
 // login helper with redirect_uri
-    $helper = new FacebookRedirectLoginHelper('http://demos.krizna.com/1353/fbconfig.php' );
+    $helper = new FacebookRedirectLoginHelper('http://refermee.com/1353/fbconfig.php' );
 try {
   $session = $helper->getSessionFromRedirect();
 } catch( FacebookRequestException $ex ) {
@@ -44,4 +45,6 @@ if ( isset( $session ) ) {
   $loginUrl = $helper->getLoginUrl();
  header("Location: ".$loginUrl);
 }
+
+
 ?>
