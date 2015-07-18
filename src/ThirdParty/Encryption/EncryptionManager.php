@@ -11,16 +11,22 @@
  *
  * @author surbhi
  */
+
+
 class EncryptionManager {
     //put your code here
-    public function encryptString($string, $password) {
-        $keyTag = hashKey($password); 
-        $crypted = fEncrypt($string, $keyTag);
-        echo $crypted;
+    public static function encryptString($string, $password) {
+        $objKeyHashing = new KeyHashing();
+        $keyTag = $objKeyHashing->hashKey($password);
+        $objEncryption = new Encryption();
+        $crypted = $objEncryption->fEncrypt($string, $keyTag);
+        return $crypted;
     }
-    public function decryptString($crypted, $password) {
-        $keyTag = hashKey($password);
-        $decrypted = fDecrypt($crypted, $keyTag);
-        echo $decrypted;
+    public static function decryptString($crypted, $password) {
+        $objKeyHashing = new KeyHashing();
+        $keyTag = $objKeyHashing->hashKey($password);
+        $objEncryption = new Encryption();
+        $decrypted = $objEncryption->fDecrypt($crypted, $keyTag);
+        return $decrypted;
     }
 }

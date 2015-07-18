@@ -31,10 +31,6 @@ use AppBundle\Resources\DAO\PublisherLoginDaoPDO;
  * @author surbhi
  */
 
-/**
- * @config\Route("/home")
- * */
-
 class RefermeeController extends Controller {
     /**
    * @DI\Inject("userDashboard.manager")
@@ -49,26 +45,125 @@ class RefermeeController extends Controller {
    /**
    * @DI\Inject("publisherDashboard.manager")
    */
-    private $publisherDashboardManager;
-  
+
+    
+    private $objNotLoggedInHomePageManager;
+    
+    private $objLoggedInHomePageManager;
+    
+    
+       /**
+   * @DI\Inject("mongo.manager")
+   */
+    private $mongoManager;
+    
+    
+    
+     /**
+     * @config\Route("/mongo") 
+     */
+     public function testMongo() {
+         echo "mongo is here";
+         $arrParams = array();
+         $arrParams['title'] = "refermee";
+         $arrParams['description'] = "database mongo";
+         $arrParams['likes'] = 100;
+         $arrParams['url'] = "http://www.tutorialspoint.com/mongodb/"; 
+         $myvalue = $this->mongoManager->insertDocumentIntoMongo($arrParams);
+         echo $myvalue;
+         return new Response();
+     }
+    
+    
+    
      /**
      * @config\Route("/homepage") 
      */
-    public function displayPage() {
-     
-        echo "heloo nishant";   
-    
-    //$objUserInfo = 
-    
-        echo "  surbhi";
-   
-    echo "    surbhi123    "; 
-    return new Response();
+      
+    public function displayHomePage() {
+        $arrParams = $this->getInitialParams();  
+        $isAuthenticated = $this->isAuthenticated();
+        
+        if($isAuthenticated) {
+            $objResult = $this->objLoggedInHomePageManager->displayPageContent();
+        }else {
+            $objResult = $this->objNotLoggedInHomePageManager->displayPageContent();
+        }
+        
+       return new Response($objResult->getContent()); 
+                
     }
+    
     /**
-     * @config\Route("/user") 
+     * @config\Route("/encrypt") 
      */
-    public function displayUserDashboard() {
+    
+    public function encryption(){
+        $password  = "kittu";
+        $crypto = \EncryptionManager::encryptString("hi surbhi", $password);
+        print_r($crypto); 
+        $decrypto = \EncryptionManager::decryptString($crypto, $password);
+        echo "\r\n";
+        print_r($decrypto);
+        return new Response();
+    }
+    
+    /**
+     * @config\Route("/decrypt") 
+     */
+    
+    public function decryption() {
+      
+    }
+    
+    
+    /**
+     * @config\Route("/fb") 
+     */
+    
+    public function fb() {
+        $arr =  array();
+        
+      $fb = \FacebookManager::saveLoginDetails($arr);
+      print_r($fb);
+      return new Response();
+    }
+    
+    
+     /**
+     * @config\Route("/signup") 
+     */
+    public function displaySignUpWidget() {
+        
+        
+    }
+    
+    /**
+     * @config\Route("/search") 
+     */
+    public function displaySearchResultPage() {
+        
+    }
+    
+    /**
+     * @config\Route("/catalog") 
+     */
+    
+    public function displayCatalogPage() {
+        
+    }
+    
+    /**
+     * @config\Route("/recommendation") 
+     */
+    public function displayRecommendationPage() {
+        
+    }
+    
+    /**
+     * @config\Route("/dashboard") 
+     */
+    public function displayUserDashboardPage() {
        $arr = array();
        $arr['username'] = "kammmo";
        $arr['email'] = "charuroy287659@gmail.com";
@@ -77,11 +172,27 @@ class RefermeeController extends Controller {
        $arr['sex']= "F";
        $arr['contact']= "8742025053";
        $objUserDetails = new UserDetails($arr);
-       $myvalue = $this->publisherDashboardManager->saveLoginDetails($objUserDetails);
-       $myvalue1 = $this->publisherDashboardManager->showUserDetails($objUserDetails);
+       $myvalue = $this->userDashboardManager->saveLoginDetails($objUserDetails);
+       $myvalue1 = $this->userDashboardManager->showUserDetails($objUserDetails);
        echo $myvalue1;
-       return new Response();
+       return new Response();  
     }
+    
+    /**
+     * @config\Route("/account") 
+     */
+    public function displayAccountSettingPage() {
+        
+    }
+    
+    /**
+     * @config\Route("/payment") 
+     */
+    public function displayPaymentPage() {
+        
+    }
+        
+    
     
     /**
      * @config\Route("/publisher") 

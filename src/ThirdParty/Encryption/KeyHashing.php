@@ -13,4 +13,8 @@
  */
 class KeyHashing {
     //put your code here
+    public function hashKey($password) {
+        $key = hash("SHA256", $password, true);
+        return $key;
+    }
 }

@@ -10,7 +10,7 @@
  *
  * @author surbhi
  */
-class EncryptionInterface {
+class Encryption {
     //put your code here
     public function fEncrypt($plaintext, $key) {
         return rtrim(
